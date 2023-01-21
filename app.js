@@ -7,3 +7,29 @@ const passwordConfirm = document.getElementById("password-confirmation");
 
 // errors
 const error = document.querySelector("span.error");
+
+email.addEventListener('input', () => {
+    if (email.validity.valid) {
+        error.textContent = "";
+        error.className = "error";
+    } else {
+        emailError();
+    }
+});
+
+form.addEventListener('submit', (e) => {
+    if (!email.validity.valid) {
+        emailError();
+        e.preventDefault();
+    }
+});
+
+function emailError() {
+    if (email.validity.valueMissing) {
+        error.textContent = "Enter a valid email address!";
+    } else if (email.validity.tooShort) {
+        error.textContent = "Email too short"
+    }
+
+    error.className = "error active";
+}

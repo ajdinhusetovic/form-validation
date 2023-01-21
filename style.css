@@ -34,3 +34,7 @@ label {
     color: white;
     font-size: 80%;
 }
+
+.erorr.active {
+    padding: 0.3em;
+}

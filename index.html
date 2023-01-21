@@ -12,29 +12,15 @@
         <form novalidate>
             <div>
                 <label for="email">Enter your email address:</label>
-                <input type="email" id="mail" required>
+                <input type="email" id="mail" required minlength="5">
                 <span class="error" aria-live="polite"></span>
             </div>
             <div>
-                <label for="country">Enter your country:</label>
-                <input type="text" required id="country">
-                <span class="erorr" aria-live="polite"></span>
+                <label for="contry">Enter your country:</label>
+                <input type="text" id="country" required minlength="3">
+                <span class="error" aria-live="polite"></span>
             </div>
-            <div>
-                <label for="zip-code">Enter your zip code:</label>
-                <input type="number" required id="zip-code">
-                <span class="erorr" aria-live="polite"></span>
-            </div>
-            <div>
-                <label for="password">Enter your password:</label>
-                <input type="number" required id="password">
-                <span class="erorr" aria-live="polite"></span>
-            </div>
-            <div>
-                <label for="password-confirmation">Enter your password again:</label>
-                <input type="number" required id="password-confirmation">
-                <span class="erorr" aria-live="polite"></span>
-            </div>
+            <button id="submit">submit</button>
         </form>
     </div>
     <script src="app.js"></script>
