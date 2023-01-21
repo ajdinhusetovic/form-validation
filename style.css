@@ -12,6 +12,7 @@ body {
 
 form {
     max-width: 200px;
+    padding-left: 16px;
 }
 
 input {
@@ -22,8 +23,14 @@ div *{
     display: block;
 }
 
+label {
+    padding-top: 12px;
+}
+
 .error {
     padding: 0;
     background-color: #900;
     width: 100%;
+    color: white;
+    font-size: 80%;
 }
