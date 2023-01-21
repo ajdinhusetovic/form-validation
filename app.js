@@ -7,6 +7,7 @@ const passwordConfirm = document.getElementById("password-confirmation");
 
 // errors
 const error = document.querySelector("span.error");
+const countryErrorMsg = document.querySelector("#country + span.error");
 
 email.addEventListener('input', () => {
     if (email.validity.valid) {
@@ -17,11 +18,25 @@ email.addEventListener('input', () => {
     }
 });
 
+country.addEventListener('input', () => {
+    if (country.validity.valid) {
+        countryErrorMsg.textContent = "";
+        countryErrorMsg.className = "error";
+    } else {
+        countryError();
+    }
+});
+
 form.addEventListener('submit', (e) => {
     if (!email.validity.valid) {
         emailError();
         e.preventDefault();
     }
+    if (!country.validity.valid) {
+        countryError();
+        e.preventDefault();
+    }
+    e.preventDefault();
 });
 
 function emailError() {
@@ -32,4 +47,14 @@ function emailError() {
     }
 
     error.className = "error active";
+}
+
+function countryError() {
+    if (country.validity.valueMissing) {
+        countryErrorMsg.textContent = "Enter your country";
+    } else if (country.validity.tooShort) {
+        countryErrorMsg.textContent = "Too short";
+    }
+
+    countryError.className = "error active"
 }
