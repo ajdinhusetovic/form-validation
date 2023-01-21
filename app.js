@@ -8,6 +8,7 @@ const passwordConfirm = document.getElementById("password-confirmation");
 // errors
 const error = document.querySelector("span.error");
 const countryErrorMsg = document.querySelector("#country + span.error");
+const zipCodeErrorMsg = document.querySelector("#zip-code + span.error");
 
 email.addEventListener('input', () => {
     if (email.validity.valid) {
@@ -27,6 +28,15 @@ country.addEventListener('input', () => {
     }
 });
 
+zipCode.addEventListener('input', () => {
+    if (zipCode.validity.valid) {
+        zipCodeErrorMsg.textContent = "";
+        zipCodeErrorMsg.className = "error";
+    } else {
+        zipCodeError();
+    }
+});
+
 form.addEventListener('submit', (e) => {
     if (!email.validity.valid) {
         emailError();
@@ -34,6 +44,10 @@ form.addEventListener('submit', (e) => {
     }
     if (!country.validity.valid) {
         countryError();
+        e.preventDefault();
+    }
+    if (!zipCode.validity.valid) {
+        zipCodeError();
         e.preventDefault();
     }
     e.preventDefault();
@@ -57,4 +71,14 @@ function countryError() {
     }
 
     countryError.className = "error active"
+}
+
+function zipCodeError() {
+    if (zipCode.validity.valueMissing) {
+        zipCodeErrorMsg.textContent = "Enter zip code";
+    } else if (zipCode.validity.tooShort) {
+        zipCodeErrorMsg.textContent = "Too short";
+    }
+
+    zipCodeError.className = "error active";
 }
