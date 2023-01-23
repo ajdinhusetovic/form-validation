@@ -1,3 +1,4 @@
+// form field selectors
 const form = document.querySelector("form");
 const email = document.getElementById("mail");
 const country = document.getElementById("country");
@@ -5,13 +6,15 @@ const zipCode = document.getElementById("zip-code");
 const password = document.getElementById("password");
 const passwordConfirm = document.getElementById("password2");
 
-// errors
+// error selectors
 const error = document.querySelector("span.error");
 const countryErrorMsg = document.querySelector("#country + span.error");
 const zipCodeErrorMsg = document.querySelector("#zip-code + span.error");
 const passwordErrorMsg = document.querySelector("#password + span.error");
 const passwordConfirmErrorMsg = document.querySelector("#password2 + span.error");
 
+
+// input field event listeners, listening for input field input
 email.addEventListener('input', () => {
     if (email.validity.valid) {
         error.textContent = "";
@@ -78,9 +81,15 @@ form.addEventListener('submit', (e) => {
         passwordConfirmError();
         e.preventDefault();    
     }
+    if (password.value !== passwordConfirm.value) {
+        passwordConfirmErrorMsg.textContent = "Passwords do not match";
+        e.preventDefault();
+    }
     e.preventDefault();
 });
 
+
+// error function
 function emailError() {
     if (email.validity.valueMissing) {
         error.textContent = "Enter a valid email address!";
@@ -124,19 +133,7 @@ function passwordError() {
 function passwordConfirmError() {
     if (passwordConfirm.validity.valueMissing) {
         passwordConfirmErrorMsg.textContent = "Enter password again";
-    } else if (password.value !== passwordConfirm.value) {
-        passwordConfirmErrorMsg.textContent = "Passwords don't match";
     }
 
     passwordConfirmError.className = "error active";
 }
-
-function checkPasswordMatch() {
-    if (password.value === passwordConfirm.value) {
-        return true;
-    }else {
-        return false;
-    }
-}
-
-checkPasswordMatch();
